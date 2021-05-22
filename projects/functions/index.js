@@ -13,9 +13,9 @@
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
 function returnFirstArgument(value) {
-    return value;
+  return value;
 }
-returnFirstArgument(22);
+returnFirstArgument(10);
 
 /*
  Задание 2:
@@ -31,13 +31,10 @@ returnFirstArgument(22);
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, b) {
-    var result = a + b;
-    
-    return result;
-}
 
-sumWithDefaults(30+20);
+function sumWithDefaults(a, b = 100) {
+  return a + b;
+}
 
 /*
  Задание 3:
@@ -47,7 +44,9 @@ sumWithDefaults(30+20);
  Пример:
    returnFnResult(() => 'привет') вернет 'привет'
  */
-function returnFnResult(fn) {}
+function returnFnResult(fn) {
+  return fn();
+}
 
 /*
  Задание 4:
@@ -62,15 +61,39 @@ function returnFnResult(fn) {}
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number) {
-  var i = returnCounter(10);
-  for (var i = 10; i < 14; i++);
+
+function returnCounter(number = 0) {
+  return function () {
+    return ++number;
+  };
 }
 
-console.log(i());
-console.log(i());
-console.log(i());
+// var f = returnCounter();
 
+// console.log(f());
+// console.log(f());
+// console.log(f());
+
+// let tempStart = 1;
+// let tempCounter = 0;
+
+// function returnCounter(number) {
+
+//   if (number != tempStart) {
+//     tempStart = number;
+//     tempCounter = 0;
+//   }
+//   tempCounter += 1;
+//   const tempStorage = (tempStart, tempCounter) => tempStart + tempCounter;
+
+//   return tempStorage;
+// };
+
+// var f = returnCounter(10);
+
+// console.log(f()); выведет 11
+// console.log(f());  выведет 12
+// console.log(f());  выведет 13
 
 /*
  Задание 5 *:
@@ -81,7 +104,9 @@ console.log(i());
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
-function returnArgumentsArray() {}
+function returnArgumentsArray(...args) {
+  return args;
+}
 
 /*
  Задание 6 *:
@@ -98,7 +123,26 @@ function returnArgumentsArray() {}
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn, ...args) {}
+
+function bindFunction(fn, ...args) {
+  // var arg = Array.from(args);
+  // return  => fn([...arg]);
+  return () => fn(...args);
+  // const result = function(arg) {
+  //   for (let i = 0; i < arg.length; ++i){
+  //     return fn(i);
+  //   };
+
+  // };
+  // return result;
+  // function sumAll(...args) { // args — имя массива
+  // let result = 0;
+
+  // for (let arg of args) result += fn(arg);
+
+  // return result;
+  // }
+}
 
 export {
   returnFirstArgument,
